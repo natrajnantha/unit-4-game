@@ -16,57 +16,55 @@
 
 <body>
 
-
     <div class="jumbotron content-align-center">
-        <h1>STAR WARS RPG</h1>
+        <h3>STAR WARS RPG</h3>
         <div id="plybtnid">
-                <!-- <form class="form-inline md-2 md-lg-"> -->
-                    <button id="playBtn" type="button" class="btn btn-dark my-2 my-sm-0 d-none">New Game</button>
-                <!-- </form> -->
-            </div>
+            <button id="playBtn" type="button" class="btn btn-dark my-2 my-sm-0 d-none">New Game</button>
+        </div>
     </div>
 
+    <!-- Define the main primary container -->
     <div class="container">
 
+        <!-- This child container holds the Initial list of all the available Starwars characters. When the user chooses the character, the rest of the characters are moved as enemeies 
+        to the remaining characters container below -->
+        <div class="playercontainer">
+        </div>
 
-    <div class="playercontainer">
-    </div>
+        <section class="newsection">
+            <h3>Your Character</h3>
+        </section>
+        <hr>
 
-    <section class="newsection">
-        <h3>Your Character</h3>
-    </section>
-    <hr>
-
-    <section class="newsection">
+        <section class="newsection">
             <h3>Enemies available to attack</h3>
         </section>
-    <hr>
-    
-    <div class="remcharcontainer">
+        <hr>
 
-    </div>
+        <!-- This containers holds the remaining enemies characters -->
+        <div class="remcharcontainer">
+        </div>
 
-    <section class="newsection">
+        <section class="newsection">
             <h3>Fight Section</h3>
-    </section>
+        </section>
 
-    <!-- <button id="attackBtn">Attack</button> -->
+        <button id="attackBtn" type="button" class="btn btn-danger my-2 my-sm-0 d-block">Attack</button>
 
-    <button id="attackBtn" type="button" class="btn btn-danger my-2 my-sm-0 d-block">Attack</button>
+        <h2>Defender</h2>
 
-    <h2>Defender</h2>
+        <!-- This container holds the defender that plays the main character -->
+        <div class="defendercharcontainer">
+        </div>
+        <hr>
 
-    <div class="defendercharcontainer">
+        <!-- The below divs displays the game messages -->
+        <div id="gamestatusmsg1">
+        </div>
+        <div id="gamestatusmsg2">
+        </div>
 
     </div>
-    <hr>
-    <div id="gamestatusmsg1">
-
-    </div>
-    <div id="gamestatusmsg2">
-    </div>
-    
-</div>
 
     <script src="assets/javascript/game.js" type="text/javascript"> </script>
 

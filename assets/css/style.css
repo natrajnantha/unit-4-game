@@ -4,6 +4,16 @@ body{
     font-family: 'Space Mono', monospace;
 }
 
+
+.jumbotron {
+    margin-bottom: 1rem;
+    background-color: lightblue;
+    border-radius: 0.3rem;
+    text-align: center;
+    height: 42px!important;
+    padding: 46px!important;
+}
+
 .imgStyle {
     width: 165px;
     height: 150px;

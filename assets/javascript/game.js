@@ -1,11 +1,16 @@
 var img_index = 1;
 var swAllCharacters = [];
+
+// The below global array defines the list of characters that are playing in the game. This array makes the game more dynamic. 
+// The player name and the corresponding image file to be defined in this array and the new character is automatically rendered into the game.
+// When a new character need to be included, just make an entry into this array. In the future when we learn more about database, this can be
+// modified to read the entries from the database and there by if a new character need to be defined it would be a database entry and no need to touch the code. 
 var playingCharacters = [
-    ['Obi-van Knobi', 'knobi.jpeg'],
-    ['Darth', 'Darth.png'],
-    ['Chubaka', 'cheb.jpg'],
-    ['Luke', 'luke.jpg'],
-    ['Darth Vader','darthvader.jpg']];
+    ['Darth', 'assets/images/Darth.png'],
+    ['Obi-van Knobi', 'assets/images/knobi.jpeg'],
+    ['Chubaka', 'assets/images/cheb.jpg'],
+    ['Luke', 'assets/images/luke.jpg'],
+    ['Darth Vader','assets/images/darthvader.jpg']];
 var clickedPlayerImage;
 var imageid = "";
 var attackPowerRnd = 0;
@@ -36,16 +41,14 @@ $(document).ready(function () {
             attackPowerRnd = Math.floor(Math.random() * 10) + 1;
             healthPointRnd = Math.floor(Math.random() * 101) + 100;
 
-            console.log("Image ID : " + imageid + "Char : " + playingCharacters[img_index, 0] + "File : " + playingCharacters[img_index, 1]);
-            console.log(" Derived values - Random attack power : " + attackPowerRnd + "Random health point : " + healthPointRnd);
+            // The below object defines the player properties and method. This is defined as an array of objects for each character from the main global array.
+            // The firsttime boolean variable is used to suppress the health point and attach power being modifed when the constructor fires during first time definition. 
             swAllCharacters[img_index] = {
                 name: playingCharacters[img_index][0],
                 gameImageID : imageid,
                 attackPower : attackPowerRnd,
                 healthPoint : healthPointRnd,
                 currentHealth : function(attackIncrementer,opponetAttackpwr) {
-                   console.log("current health calc : " + attackIncrementer);
-                   console.log("Player " + this.name + " Current health power : " + this.healthPoint + " First time call " + firstTime);
                    if (firstTime) {
                         firstTime = false;
                    } else {
@@ -54,10 +57,12 @@ $(document).ready(function () {
                    this.attackPower = this.attackPower + attackIncrementer;
                    firstTime = false;
                    }
-                   console.log("Player " + this.name + " health power after attack : " + this.healthPoint);
                    return this.healthPoint;
                 }};
 
+            //Below code defines the image container that holds the image in the playercontainer. 
+            //Assign the player name and display at the top of the image.
+            //Assign the image file to the img file to the img element. Assigns the health point that displayed at the bottom of the image.
             var img = $('<img />').attr({
                 'id': imageid,
                 'alt': imageid,
@@ -85,9 +90,10 @@ $(document).ready(function () {
             $("#" + imageid + "hp").text(healthPointRnd);
 
 
+            // Dynamically define the on click event for the image added to the playercontainer area. When a player is clicked, the below code will keep the choosen player in the
+            // playercontainer area and move the rest to the remaining player container area which considered as the enemies available for defence. 
             $("#" + imageid).on("click", function () {
                 clickedPlayerImage = $(this).attr("id");
-                console.log("Choosen Player : " + clickedPlayerImage);
 
                 for (let i = 0; i < swAllCharacters.length; i++) {
 
@@ -99,8 +105,6 @@ $(document).ready(function () {
                             numberofEnemies = playingCharacters.length - 1;
 
                         } else {
-
-
                             // Move the rest of the characters to the Enemies available area
                              $("<div/>", { id: "remimagecontainer" + i}).append($("#" + swAllCharacters[i].gameImageID)).appendTo(".remcharcontainer");
                              $("#" + swAllCharacters[i].gameImageID + "hp").remove();
@@ -110,7 +114,6 @@ $(document).ready(function () {
                              $playerNamestr.addClass("remareaText");
 
                              $("#remimagecontainer" + i).addClass("remimagecontainer");
-                             console.log("Index I : " + i);
                              $playerNamestr.text(swAllCharacters[i].name);
 
                              $("#" + swAllCharacters[i].gameImageID).addClass("remimgStyle");
@@ -123,6 +126,8 @@ $(document).ready(function () {
                         }
                     } else if (!defenderChoosen) {
                         if (swAllCharacters[i].gameImageID === clickedPlayerImage) {
+                            //This code executes when the defender is being choosen from the enemies area. The code moves the image thats clicked from the 'remaining container' area
+                            //to the defender container area.
                             console.log("Defender choosen name is : " + swAllCharacters[i].name);
 
                             defenderindex = i;
@@ -153,26 +158,24 @@ $(document).ready(function () {
             });
 
         };
-
-        console.log(swAllCharacters);
-
-        console.log(img);
-        console.log("Current health point : " + swAllCharacters[0].currentHealth(10));
     };
 
+    //Call the function to setup the characters. 
     setupSWChararcters();
 
 });
 
+//This function reinitializes to the new game for next enemy
 function reinitAttack() {
     DefenderWon = false;
     PlayerWon = false;
     $("#gamestatusmsg1").empty();
     $("#gamestatusmsg2").empty();
-
-
 };
 
+//The play button click starts a new game. The play button will automatically appear on the navigation area under 2 conditions -
+//  * when the main player looses the game to a enemy
+//  * When there are no more enemies available to defend
 $("#playBtn").on("click", function(){
 
     $("#playBtn").addClass("btn btn-dark d-none");
@@ -180,6 +183,8 @@ $("#playBtn").on("click", function(){
 
 });
 
+
+//The attack button applies the attack power to the enemy and the main character. If the health point goes to zero or below, then the corresponding player looses.
 $("#attackBtn").on("click", function() {
 
     if (DefenderWon || PlayerWon) {
@@ -225,7 +230,6 @@ $("#attackBtn").on("click", function() {
     if (DefenderWon) {
         $("#gamestatusmsg2").append(winString);
         $("#playBtn").addClass("btn btn-dark d-block");
-        console.log("Player index during fade out " + playerindex);
         $("#imagecontainer" + playerindex).fadeOut(2000);
     } 
 
@@ -244,7 +248,4 @@ $("#attackBtn").on("click", function() {
 } else {
     alert("Choose an enemy to play");
 }
-
-
-
 });
