@@ -1,0 +1,153 @@
+body{
+    background-image: url("../images/thumb-1920-762343.jpg");
+    background-repeat: no-repeat;
+    font-family: 'Space Mono', monospace;
+}
+
+.imgStyle {
+    width: 165px;
+    height: 150px;
+    border: 2px solid blue;
+    margin: 3px;
+    padding: 25px;
+    background-color: brown;
+}
+
+.remimgStyle {
+    width: 165px;
+    height: 150px;
+    border: 2px solid green;
+    margin: 3px;
+    padding: 25px;
+    background-color: red;
+}
+
+.defimgStyle {
+    width: 165px;
+    height: 150px;
+    border: 2px solid green;
+    margin: 3px;
+    padding: 25px;
+    background-color: black;
+}
+
+.imagecontainer {
+    position: relative;
+    float: left;
+}
+
+.remimagecontainer{
+    position: relative;
+    float: left;
+}
+
+.defimagecontainer{
+    position: relative;
+    float: left;
+}
+
+.charname {
+    position: relative;
+}
+
+.text {
+    position: absolute;
+    bottom: 125px;
+    width: 100%;
+    padding: 0px;
+    margin-bottom: 0;
+    line-height: 30px;
+    text-align: center;
+    color: beige;
+}
+
+.remareaText {
+    position: absolute;
+    bottom: 125px;
+    width: 100%;
+    padding: 0px;
+    margin-bottom: 0;
+    line-height: 30px;
+    text-align: center;
+}
+
+.defareaText {
+    position: absolute;
+    bottom: 125px;
+    width: 100%;
+    padding: 0px;
+    margin-bottom: 0;
+    line-height: 30px;
+    text-align: center;
+    color: beige;
+}
+
+.imgHPStyle {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    padding: 3px;
+    margin-bottom: 0;
+    line-height: 30px;
+    text-align: center;
+    color: beige;
+}
+
+
+.defimgHPStyle {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    padding: 3px;
+    margin-bottom: 0;
+    line-height: 30px;
+    text-align: center;
+    color: beige;
+}
+
+.newsection {
+    clear: both;
+}
+
+.playercontainer {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.remcharcontainer {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.defendercharcontainer {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#gamestatusmsg1, #gamestatusmsg2  {
+    clear: both;
+    font-size: 20px;
+}
+
+.jumbotron {
+    margin-bottom: 1rem;
+    background-color: lightblue;
+    border-radius: 0.3rem;
+    text-align: center;
+    height: 125px;
+}
+
+#playBtn {
+    float: right;
+    position: relative;
+    margin: 0px 80px 0px 0px;
+}
