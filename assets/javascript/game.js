@@ -193,7 +193,9 @@ $("#attackBtn").on("click", function() {
 
     numberofAttacks++;
     playerHealthPoint = swAllCharacters[playerindex].currentHealth(playerOriginalAttackpwr,(swAllCharacters[defenderindex].attackPower));
-    defenderHealthPoint = swAllCharacters[defenderindex].currentHealth(5,swAllCharacters[playerindex].attackPower);
+// The first argument 0 in the below function call will keep the defender score constant. But this value most cases makes the player to win because the player attack point keeps accumulating. 
+// To make the game fair, the first argument can be set to 5
+    defenderHealthPoint = swAllCharacters[defenderindex].currentHealth(0,swAllCharacters[playerindex].attackPower);
     console.log("Number of attacks : " + numberofAttacks);
     console.log("Player name is : " + swAllCharacters[playerindex].name + " Player attack pwr is : " + swAllCharacters[playerindex].attackPower + " current health is " + playerHealthPoint);
     console.log("Defender name is : " + swAllCharacters[defenderindex].name + " Defender attack pwr is : " + swAllCharacters[defenderindex].attackPower + " current health is " + defenderHealthPoint);
